@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -12,7 +14,21 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Quiz'),
         ),
-        body: const Text('this is default!'),
+        body: Column(children: const [
+          Text('The question is: '),
+          RaisedButton(
+            child: Text('Answer 1'),
+            onPressed: null,
+          ),
+          RaisedButton(
+            child: Text('Answer 2'),
+            onPressed: null,
+          ),
+          RaisedButton(
+            child: Text('Answer 3'),
+            onPressed: null,
+          )
+        ]),
       ),
     );
   }
