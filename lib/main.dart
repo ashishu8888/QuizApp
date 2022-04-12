@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/Question.dart';
+import './answer.dart';
 
 void main() => runApp(const MyApp());
 
@@ -13,9 +14,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final question = const [
-    'what\'s your favourite animal ?',
-    'what\'s your favourite colour ?'
+  var question = [
+    {
+      'questionText': 'what\'s your favourite color ?',
+      'answerText': ['Red', 'Blue', 'Yellow'],
+    },
+    {
+      'questionText': 'what\'s your favourite Animal ?',
+      'answerText': ['Lion', 'Elephant', 'Wolf'],
+    },
+    {
+      'questionText': 'who\'s your favourite personality ?',
+      'answerText': ['Virat kohli', 'Amitabh bachhan', 'Rolando'],
+    },
+    {
+      'questionText': 'Rate our App?',
+      'answerText': ['5', '4', '3'],
+    }
   ];
 
   var _questionIndex = 0;
@@ -33,36 +48,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 64, 194, 144),
+          backgroundColor: Colors.blue,
           title: const Text('Quiz'),
         ),
         body: Column(children: [
-          Question(question[_questionIndex]),
-          RaisedButton(
-            child: const Text('Answer 1'),
-            onPressed: _answerQuestion,
-            elevation: 12,
-            color: const Color.fromARGB(255, 107, 225, 111),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          ),
-          RaisedButton(
-            autofocus: true,
-            child: const Text('Answer 2'),
-            onPressed: _answerQuestion,
-            elevation: 12,
-            color: const Color.fromARGB(255, 232, 104, 95),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          ),
-          RaisedButton(
-            child: const Text('Answer 3'),
-            onPressed: _answerQuestion,
-            elevation: 12,
-            color: const Color.fromARGB(255, 87, 169, 237),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          )
+          Question(question[_questionIndex]['questionText'] as String),
+          ...(question[_questionIndex]['answerText'] as List<String>)
+              .map((answer) {
+            return Answer(_answerQuestion, answer);
+          }).toList(),
         ]),
       ),
     );
