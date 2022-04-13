@@ -9,19 +9,15 @@ class Answer extends StatelessWidget {
   const Answer(this.handler, this.strings);
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // width: double.infinity,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton.icon(
-            label: Text(strings),
-            icon: Icon(Icons.check),
-            onPressed: handler,
-            style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(color: Colors.blue))))),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            fixedSize: const Size(100, 45),
+            primary: Colors.indigoAccent,
+            elevation: 12),
+        child: Text(strings),
+        onPressed: handler,
       ),
     );
   }
